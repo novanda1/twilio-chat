@@ -17,5 +17,12 @@ const twilioInstance: FastifyPluginCallback<TwilioInstanceOptions> = (
   done();
 };
 
-// fp is handling encapsulation and distribution
+
+/**
+ * fp is handling encapsulation and distribution
+ * imagine like postgres pooling
+ * 
+ * note: i'm not sure are we really need 
+ * to do this on twilio instance
+ */
 export default fp(twilioInstance);
