@@ -5,6 +5,7 @@ import fastify from "fastify";
 import conversationsController from "./controllers/conversations-controller";
 import tokenController from "./controllers/token-controller";
 import twilioInstance from "./instances/twilio-instance";
+import ConversationsRoleServices from "./services/conversations-role-service";
 
 dotenv.config();
 
@@ -20,6 +21,16 @@ server.register(fastifyJwt, {
 server.register(twilioInstance);
 server.register(tokenController, { path: "/token" });
 server.register(conversationsController);
+
+// setup twilio
+server.register((fastify, _, done) => {
+  const roleService = new ConversationsRoleServices();
+
+  // we need to have roles for the incoming users
+  roleService.init(fastify);
+
+  done();
+});
 
 server.listen({ port: +(process.env.PORT || 3000) }, (err, address) => {
   if (err) {
