@@ -2,6 +2,7 @@ import cors from "@fastify/cors";
 import fastifyJwt from "@fastify/jwt";
 import * as dotenv from "dotenv";
 import fastify from "fastify";
+import conversationsController from "./controllers/conversations-controller";
 import tokenController from "./controllers/token-controller";
 import twilioInstance from "./instances/twilio-instance";
 
@@ -18,6 +19,7 @@ server.register(fastifyJwt, {
 
 server.register(twilioInstance);
 server.register(tokenController, { path: "/token" });
+server.register(conversationsController);
 
 server.listen({ port: +(process.env.PORT || 3000) }, (err, address) => {
   if (err) {
