@@ -12,6 +12,7 @@
     "@fastify/cors": "^8.2.0",
     "dotenv": "^16.0.3",
     "fastify": "^4.10.2",
+    "fastify-plugin": "^4.4.0",
     "twilio": "^3.83.4"
   },
   "devDependencies": {

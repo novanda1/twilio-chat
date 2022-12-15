@@ -2,6 +2,7 @@ import cors from "@fastify/cors";
 import * as dotenv from "dotenv";
 import fastify from "fastify";
 import tokenController from "./controllers/token-controller";
+import twilioInstance from "./instances/twilio-instance";
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ server.register(cors, {
   origin: "http://localhost:5173",
 });
 
+server.register(twilioInstance);
 server.register(tokenController, { path: "/token" });
 
 server.listen({ port: +(process.env.PORT || 3000) }, (err, address) => {

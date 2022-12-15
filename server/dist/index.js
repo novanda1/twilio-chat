@@ -26,24 +26,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const fastify_1 = __importDefault(require("fastify"));
-const dotenv = __importStar(require("dotenv"));
-const token_generator_1 = __importDefault(require("./token-generator"));
 const cors_1 = __importDefault(require("@fastify/cors"));
+const dotenv = __importStar(require("dotenv"));
+const fastify_1 = __importDefault(require("fastify"));
+const token_controller_1 = __importDefault(require("./controllers/token-controller"));
+const twilio_instance_1 = __importDefault(require("./instances/twilio-instance"));
 dotenv.config();
 const server = (0, fastify_1.default)();
 server.register(cors_1.default, {
     origin: "http://localhost:5173",
 });
-// @todo use jwt to get id
-server.get("/token/:id", (request) => {
-    var _a;
-    const id = (_a = request.params) === null || _a === void 0 ? void 0 : _a.id;
-    if (!id)
-        return "no id";
-    const token = (0, token_generator_1.default)(id);
-    return token;
-});
+server.register(twilio_instance_1.default);
+server.register(token_controller_1.default, { path: "/token" });
 server.listen({ port: +(process.env.PORT || 3000) }, (err, address) => {
     if (err) {
         console.error(err);

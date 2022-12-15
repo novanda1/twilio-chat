@@ -27,7 +27,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const AccessToken_1 = __importStar(require("twilio/lib/jwt/AccessToken"));
-const config_1 = __importDefault(require("./config"));
+const config_1 = __importDefault(require("../config"));
 const tokenGenerator = (identity) => {
     if (!identity)
         throw "No identity provide";
