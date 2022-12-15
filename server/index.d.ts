@@ -5,3 +5,13 @@ declare module "fastify" {
     twilio: Twilio;
   }
 }
+
+declare module "@fastify/jwt" {
+  interface FastifyJWTUser {
+    sub: string;
+    role: "superadmin" | "admin" | "student" | "teacher";
+  }
+  interface FastifyJWT {
+    user: FastifyJWTUser;
+  }
+}
