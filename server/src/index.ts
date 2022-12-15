@@ -1,4 +1,5 @@
 import cors from "@fastify/cors";
+import fastifyJwt from "@fastify/jwt";
 import * as dotenv from "dotenv";
 import fastify from "fastify";
 import tokenController from "./controllers/token-controller";
@@ -10,6 +11,9 @@ const server = fastify();
 
 server.register(cors, {
   origin: "http://localhost:5173",
+});
+server.register(fastifyJwt, {
+  secret: "supersecret",
 });
 
 server.register(twilioInstance);
