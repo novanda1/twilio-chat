@@ -1,4 +1,4 @@
-import tokenGenerator from "../src/token-generator";
+import tokenGenerator from "../src/services/token-generator-service";
 const jwt = require("jsonwebtoken");
 
 describe("#tokenGenerator", () => {

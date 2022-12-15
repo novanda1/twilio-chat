@@ -1,5 +1,5 @@
 import AccessToken, { ChatGrant, SyncGrant } from "twilio/lib/jwt/AccessToken";
-import config from "./config";
+import config from "../config";
 
 const tokenGenerator = (identity: string) => {
   if (!identity) throw "No identity provide";
